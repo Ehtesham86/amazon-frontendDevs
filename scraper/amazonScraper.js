@@ -1,11 +1,14 @@
 // /scraper/amazonScraper.js
 
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 
 // Function to scrape product data
 const scrapeProductData = async (asin) => {
     const browser = await puppeteer.launch({
-        headless: false, // Set to false to see browser interactions
+        executablePath: process.env.CHROME_PATH || '/usr/bin/chromium-browser', // Adjust path as necessary
+
+        headless: true, // Keep this as true for server environments
         defaultViewport: null, // Makes the viewport full-screen (helps with certain site behaviors)
         args: [
             '--no-sandbox', 
