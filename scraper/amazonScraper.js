@@ -6,16 +6,14 @@ const puppeteer = require('puppeteer-core');
 // Function to scrape product data
 const scrapeProductData = async (asin) => {
     const browser = await puppeteer.launch({
-        executablePath: process.env.CHROME_PATH || '/usr/bin/chromium-browser', // Adjust path as necessary
-
-        headless: true, // Keep this as true for server environments
-        defaultViewport: null, // Makes the viewport full-screen (helps with certain site behaviors)
+        headless: true,
+        channel: 'chrome', // Specify the channel to use
         args: [
-            '--no-sandbox', 
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage', // Helps prevent crashes from large memory usage
-        ]
-    });
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+        ],
+      });
     
     const page = await browser.newPage();
 
